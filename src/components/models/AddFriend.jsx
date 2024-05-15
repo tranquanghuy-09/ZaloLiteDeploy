@@ -238,15 +238,15 @@ const AddFriendDialog2 = ({ data, setOpenDialog, phoneNumber }) => {
           <hr className="h-1.5 bg-slate-200" />
           <div className="m-3  h-full items-center justify-center">
             <div className="flex items-center py-2 opacity-50">
-              <img src="/id-card.png" alt="" className="w-[20px]" />
+              <img src="/src/assets/id-card.png" alt="" className="w-[20px]" />
               <span className="ml-[10px] text-sm">Chia sẻ danh thiếp</span>
             </div>
             <div className="flex items-center py-2">
-              <img src="/blocked.png" alt="" className="w-[18px]" />
+              <img src="/src/assets/blocked.png" alt="" className="w-[18px]" />
               <span className="ml-3 text-sm ">Chặn tin nhắn và cuộc gọi</span>
             </div>
             <div className="flex items-center py-2">
-              <img src="/alert.png" alt="" className="w-[18px]" />
+              <img src="/src/assets/alert.png" alt="" className="w-[18px]" />
               <span className=" ml-3 text-sm ">Báo xấu</span>
             </div>
           </div>
