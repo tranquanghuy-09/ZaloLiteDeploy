@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-import notificationSound from "../assets/sounds/message-notification.mp3";
+import notificationSound from "/message-notification.mp3";
 function ChatElement({
   id,
   chatAvatar,
@@ -167,7 +167,7 @@ function ChatElement({
           return (
             <span className="flex items-center">
               <img
-                src="/src/assets/icons/image.png"
+                src="/image.png"
                 alt=""
                 className="h-[14px] w-[14px]"
               />
@@ -185,7 +185,7 @@ function ChatElement({
           return (
             <span className="flex items-center">
               <img
-                src="/src/assets/icons/file-default.png"
+                src="/file-default.png"
                 alt=""
                 className="h-[14px] w-[14px]"
               />
@@ -376,7 +376,7 @@ function ChatElement({
                             <span className="flex items-center">
                               Bạn:&nbsp;
                               <img
-                                src="/src/assets/icons/image.png"
+                                src="/image.png"
                                 alt=""
                                 className="h-[14px] w-[14px]"
                               />
@@ -389,7 +389,7 @@ function ChatElement({
                             <span className="flex items-center">
                               Bạn:&nbsp;
                               <img
-                                src="/src/assets/icons/file-default.png"
+                                src="/file-default.png"
                                 alt=""
                                 className="h-[14px] w-[14px]"
                               />

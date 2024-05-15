@@ -1236,7 +1236,6 @@ const Conversation = () => {
                   className="w-3 px-2 "
                   icon={faMagnifyingGlass}
                 />
-                {/* <img src="../assets/icons/search-dialog.png" alt="" className="border-2"  /> */}
                 <input
                   // onFocus={handleFocusPhoneClick}
                   // onBlur={handleBlurPhoneClick}
@@ -1552,7 +1551,7 @@ const Conversation = () => {
                       <span className="flex items-center justify-center">
                         <img
                           className="mt-[1px] h-[10px]"
-                          src="/src/assets/tag.png"
+                          src="/tag.png"
                           alt=""
                         />
                       </span>
@@ -1562,7 +1561,7 @@ const Conversation = () => {
                 <div className="flex flex-row items-center">
                   <a href="" className="p-1">
                     <img
-                      src="/src/assets/group-user-plus.png"
+                      src="/group-user-plus.png"
                       alt=""
                       className="w-[22px] "
                     />
@@ -1575,17 +1574,13 @@ const Conversation = () => {
                     }}
                   >
                     <img
-                      src="/src/assets/mini-search.png"
+                      src="/mini-search.png"
                       alt=""
                       className="m-1 h-4 w-4"
                     />
                   </div>
                   <Link to="/videocall" className="p-2">
-                    <img
-                      src="/src/assets/video.png"
-                      alt=""
-                      className="m-1 h-5 w-5"
-                    />
+                    <img src="/video.png" alt="" className="m-1 h-5 w-5" />
                   </Link>
                   <div
                     onClick={() => {
@@ -1593,11 +1588,7 @@ const Conversation = () => {
                     }}
                     className="cursor-pointer p-2"
                   >
-                    <img
-                      src="/src/assets/right-bar.png"
-                      alt=""
-                      className="m-1 h-4 w-4"
-                    />
+                    <img src="/right-bar.png" alt="" className="m-1 h-4 w-4" />
                   </div>
                 </div>
               </div>
@@ -1617,7 +1608,6 @@ const Conversation = () => {
                         icon={faMagnifyingGlass}
                         style={{ color: "#7988A1" }}
                       />
-                      {/* <img src="../assets/icons/search-dialog.png" alt="" className="border-2"  /> */}
                       <input
                         // onFocus={handleFocusPhoneClick}
                         // onBlur={handleBlurPhoneClick}
@@ -1845,7 +1835,7 @@ const Conversation = () => {
                   <div className="mr-2 mt-1 flex w-10 items-center justify-center">
                     <label htmlFor="videoInput">
                       <img
-                        src="/src/assets/icons/film.png"
+                        src="/film.png"
                         alt=""
                         className="h-[26px] w-[24px] cursor-pointer opacity-80 hover:opacity-100"
                       />
@@ -1914,7 +1904,7 @@ const Conversation = () => {
                               <div className="flex w-full items-center text-xs">
                                 <div className="flex">
                                   <img
-                                    src="/src/assets/icons/quotation.png"
+                                    src="/quotation.png"
                                     alt=""
                                     className="h-4 w-4"
                                   />
@@ -2010,11 +2000,7 @@ const Conversation = () => {
                     >
                       <div className="flex w-full items-center justify-center">
                         <div className="flex h-8 w-8 items-center justify-center rounded-[50%] border bg-[#E7EAED] hover:bg-gray-300">
-                          <img
-                            src="/src/assets/icons/bell.png"
-                            alt=""
-                            className="w-5"
-                          />
+                          <img src="/bell.png" alt="" className="w-5" />
                         </div>
                       </div>
                       <div className="mt-2 flex w-full items-center justify-center">
@@ -2036,7 +2022,7 @@ const Conversation = () => {
                       <div className="flex w-full items-center justify-center">
                         <div className="flex h-8 w-8 items-center justify-center rounded-[50%] border bg-[#E7EAED] hover:bg-gray-300">
                           <img
-                            src="/src/assets/icons/push-pin.png"
+                            src="/push-pin.png"
                             alt=""
                             className="h-[18px] w-[18px]"
                           />
@@ -2058,9 +2044,7 @@ const Conversation = () => {
                         <div className="flex h-8 w-8 items-center justify-center rounded-[50%] border bg-[#E7EAED] hover:bg-gray-300">
                           {/* <img src="" alt="" className="mt-1 w-5" /> */}
                           <div className="-ml-1 mt-2 rounded-[50%]">
-                            <CreateGroup
-                              image={"/src/assets/icons/people.png"}
-                            />
+                            <CreateGroup image={"/people.png"} />
                           </div>
                         </div>
                       </div>
@@ -2164,11 +2148,7 @@ const Conversation = () => {
                             className="flex w-full items-center  hover:bg-[#F1F3F4]"
                           >
                             <div className="flex h-[42px] w-[42px] items-center justify-center rounded border">
-                              <img
-                                src="/src/assets/icons/link.png"
-                                alt=""
-                                className="h-4 w-4"
-                              />
+                              <img src="/link.png" alt="" className="h-4 w-4" />
                             </div>
                             <div className="-mt-5 ml-2 w-[185px]">
                               <p className="w-[265px] truncate text-sm font-semibold text-tblack">

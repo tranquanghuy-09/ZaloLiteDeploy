@@ -52,7 +52,7 @@ const MessageLayout = () => {
 
           <div className="relative inline-block p-1">
             <img
-              src="/src/assets/group-user-plus.png"
+              src="/group-user-plus.png"
               alt=""
               className="w-8 cursor-pointer items-center justify-center"
             />
