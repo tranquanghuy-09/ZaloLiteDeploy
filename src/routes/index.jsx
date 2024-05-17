@@ -78,7 +78,7 @@ export default function Router() {
       path: "/",
       element: <DashboardLayout component={comp}></DashboardLayout>,
       children: [
-        { element: <Navigate to="/app" replace />, index: true },
+        { element: <Navigate to="/auth/login" replace />, index: true },
         {
           path: "/app",
           element: <MessageFilterBar />,
