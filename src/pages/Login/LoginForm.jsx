@@ -196,16 +196,16 @@ export default function LoginForm() {
           // console.log(data.token);
           // navigate("/app", { token: data.token });
           // ============
-          localStorage.setItem("token", token.field);
+          localStorage.setItem("token", data.token);
           // navigate('/app', {token: token.field});
           navigate("/app", {
-            state: { token: token.field, phoneNumber: phoneNumber },
+            state: { token: data.token, phoneNumber: data.phone },
           });
 
           //Lưu userID, token vào cookie
-          setTokenInCookie(token.field);
+          setTokenInCookie(data.token);
           // console.log(token.field);
-          setPhoneNumberInCookie(phoneNumber);
+          setPhoneNumberInCookie(data.phone);
         } else if (data.connect == "ACCEPT") {
           let device = navigator.userAgent.match("Windows") ? "Windows" : "MAC";
           let day = new Date();
