@@ -195,9 +195,17 @@ export default function LoginForm() {
         if (data.token != null) {
           // console.log(data.token);
           // navigate("/app", { token: data.token });
+          // ============
+          localStorage.setItem("token", token.field);
+          // navigate('/app', {token: token.field});
           navigate("/app", {
-            state: { token: data.token, phoneNumber: data.phone },
+            state: { token: token.field, phoneNumber: phoneNumber },
           });
+
+          //Lưu userID, token vào cookie
+          setTokenInCookie(token.field);
+          // console.log(token.field);
+          setPhoneNumberInCookie(phoneNumber);
         } else if (data.connect == "ACCEPT") {
           let device = navigator.userAgent.match("Windows") ? "Windows" : "MAC";
           let day = new Date();
@@ -211,6 +219,21 @@ export default function LoginForm() {
         }
       }
     };
+  };
+
+  const handleKeyDown = (e) => {
+    // Ngăn không cho nhập các ký tự không phải là số
+    if (!/[0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Delete') {
+      e.preventDefault();
+    }
+  };
+
+  const handlePaste = (e) => {
+    // Ngăn không cho dán các ký tự không phải là số
+    const paste = (e.clipboardData || window.clipboardData).getData('text');
+    if (!/^\d+$/.test(paste)) {
+      e.preventDefault();
+    }
   };
 
   return (
@@ -231,7 +254,7 @@ export default function LoginForm() {
           </ul>
 
           <form onSubmit={handleSubmitLogin} className="mt-2  px-6">
-            <div className="-ml-2 w-full items-center">
+            <div className="w-full items-center">
               <div className="mx-2 mb-2 flex w-full items-center border-b-2 py-4">
                 <FontAwesomeIcon icon={faMobileScreen} className="mx-3" />
                 <select
@@ -246,8 +269,13 @@ export default function LoginForm() {
 
                 <input
                   id="input-phone"
+                  type="text"
                   placeholder="Số điện thoại"
-                  className="mr-1 w-full px-3 py-1 focus:outline-none"
+                  className="w-full px-3 py-1 focus:outline-none"
+
+                  onKeyDown={handleKeyDown}
+                  onPaste={handlePaste}
+
                   onChange={(event) => {
                     setPhoneNumber(event.target.value);
                   }}
@@ -255,13 +283,13 @@ export default function LoginForm() {
               </div>
             </div>
 
-            <div className="mx-2 mb-2 border-b-2 py-4">
+            <div className="mx-2 mb-2 flex w-full items-center border-b-2 py-4">
               <FontAwesomeIcon icon={faLock} className="mx-3" />
               <input
                 id="input-password"
                 type="password"
                 placeholder="Mật khẩu"
-                className="mx-3 w-64 px-3 focus:outline-none"
+                className="w-full px-3 py-1 focus:outline-none"
                 onChange={(event) => {
                   setPassword(event.target.value);
                 }}
