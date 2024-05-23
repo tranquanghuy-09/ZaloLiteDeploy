@@ -63,6 +63,14 @@ export default function Router() {
   //   }
   // }, [location]);
 
+  // Nếu profileData là null, điều hướng đến trang đăng nhập
+  if (
+    localStorage.getItem("logined") === "false" &&
+    location.pathname !== "/auth/login"
+  ) {
+    return <Navigate to="/auth/login" replace />;
+  }
+
   return useRoutes([
     {
       path: "/auth",

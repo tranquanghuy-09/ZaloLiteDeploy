@@ -1,4 +1,10 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as React from "react";
 import Button from "@mui/material/Button";
@@ -18,6 +24,7 @@ import { message, Space } from "antd";
 function Navbar({ onNavbarReady }) {
   const cookies = new Cookies();
   const { setUserID } = useUser();
+  const navigate = useNavigate();
 
   const [phoneNumberCookies, setPhoneNumberCookies] = useState(null);
   const [tokenFromCookies, setTokenFromCookies] = useState(null);
@@ -31,17 +38,18 @@ function Navbar({ onNavbarReady }) {
   const token = location.state?.token;
   const phoneNumber = location.state?.phoneNumber;
   const avt = location.state?.avt;
-  // console.log(avt); 
+  // console.log(avt);
   // console.log("Token: ", token);
   // console.log("Phone Number: ", phoneNumber);
 
   useEffect(() => {
-    
     if (token && phoneNumber) {
       const fetchProfile = async () => {
         try {
           const response = await fetch(
-            `${process.env.HOST}/api/v1/account/profile/${cookies.get("phoneNumber")}`,
+            `${process.env.HOST}/api/v1/account/profile/${cookies.get(
+              "phoneNumber",
+            )}`,
             {
               method: "GET",
               headers: {
@@ -80,9 +88,6 @@ function Navbar({ onNavbarReady }) {
       fetchProfile();
     }
   }, [token, phoneNumber]);
-
-
-
 
   let messageImage = "/message-outline.png";
   let contactImage = "/contact-book-outline.png";
@@ -140,7 +145,14 @@ function Navbar({ onNavbarReady }) {
     onNavbarReady();
   }, []);
 
+  const [logined, setLogined] = useState(localStorage.getItem("logined"));
 
+  useEffect(() => {
+    if (localStorage.getItem("logined") === "false") {
+      console.warn("Chưa đăng nhập: ", localStorage.getItem("logined"));
+      navigate("/auth/login");
+    }
+  }, [logined]);
 
   // Hàm để đặt token vào cookie
   // const setTokenInCookie = (tokenValue) => {
@@ -174,7 +186,6 @@ function Navbar({ onNavbarReady }) {
       setAvatar(avatarLoad);
     }
   }, []);
-
 
   // Gửi yêu cầu GET khi component được mount hoặc phoneNumber thay đổi
   useEffect(() => {
@@ -236,8 +247,7 @@ function Navbar({ onNavbarReady }) {
   //   }
 
   // }, []); // Chỉ chạy một lần sau khi component được render
-  
-  
+
   // console.log("PhoneNumber on Cookies", phoneNumberCookies);
   // console.log("Token on Cookies", tokenFromCookies);
 
@@ -322,7 +332,7 @@ function Navbar({ onNavbarReady }) {
                     <div>
                       <img
                         src={localStorage.getItem("avatar")}
-                        className="h-12 w-12 rounded-full border "
+                        className="h-12 w-12 rounded-full border"
                         alt="avatar"
                       />
                     </div>
@@ -337,10 +347,10 @@ function Navbar({ onNavbarReady }) {
                     onClick={handleClick}
                     disableTouchRipple
                   >
-                    <div>
+                    <div className="">
                       <img
                         src={avatar}
-                        className="w-14 rounded-full border "
+                        className="h-12 w-12 rounded-full border object-cover"
                         alt="avatar"
                       />
                     </div>
@@ -423,10 +433,14 @@ function Navbar({ onNavbarReady }) {
                         }}
                         onClick={() => {
                           handleClose(); // Đóng menu sau khi nhấp vào
-  
+
                           // Danh sách các tên cookie cần xoá
-                          const cookieNames = ["phoneNumber", "token", "userID"];
-  
+                          const cookieNames = [
+                            "phoneNumber",
+                            "token",
+                            "userID",
+                          ];
+
                           // Lặp qua danh sách cookieNames và gọi hàm cookies.remove cho mỗi tên cookie
                           cookieNames.forEach((cookieName) => {
                             cookies.remove(cookieName, {
@@ -438,13 +452,14 @@ function Navbar({ onNavbarReady }) {
                               domain: "localhost",
                             });
                           });
-  
+
                           // Lấy tất cả cookies
                           // const allCookies = cookies.getAll();
                           // console.log("++++++++++++++", allCookies);
-  
+
                           // Xoá tất cả cookies trong localStorage
                           localStorage.clear();
+                          localStorage.setItem("logined", false);
                         }}
                       >
                         Đăng xuất
@@ -454,7 +469,7 @@ function Navbar({ onNavbarReady }) {
                 </Menu>
               </div>
             </li>
-  
+
             <li>
               <Link
                 to="/app"
@@ -490,7 +505,11 @@ function Navbar({ onNavbarReady }) {
                   location.pathname === "/todo" ? "bg-[#006edc]" : ""
                 }`}
               >
-                <img src={todoImage} className="h-[22px] w-[22px]" alt="avatar" />
+                <img
+                  src={todoImage}
+                  className="h-[22px] w-[22px]"
+                  alt="avatar"
+                />
               </Link>
             </li>
           </ul>

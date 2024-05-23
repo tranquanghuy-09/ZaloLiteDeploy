@@ -174,6 +174,8 @@ export default function LoginForm() {
         // console.log(token.field);
         setPhoneNumberInCookie(phoneNumber);
 
+        localStorage.setItem("logined", true);
+
         // console.log("API call successful");
       } else {
         // Xử lý khi API trả về lỗi
@@ -223,14 +225,20 @@ export default function LoginForm() {
 
   const handleKeyDown = (e) => {
     // Ngăn không cho nhập các ký tự không phải là số
-    if (!/[0-9]/.test(e.key) && e.key !== 'Backspace' && e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Delete') {
+    if (
+      !/[0-9]/.test(e.key) &&
+      e.key !== "Backspace" &&
+      e.key !== "ArrowLeft" &&
+      e.key !== "ArrowRight" &&
+      e.key !== "Delete"
+    ) {
       e.preventDefault();
     }
   };
 
   const handlePaste = (e) => {
     // Ngăn không cho dán các ký tự không phải là số
-    const paste = (e.clipboardData || window.clipboardData).getData('text');
+    const paste = (e.clipboardData || window.clipboardData).getData("text");
     if (!/^\d+$/.test(paste)) {
       e.preventDefault();
     }
@@ -272,10 +280,8 @@ export default function LoginForm() {
                   type="text"
                   placeholder="Số điện thoại"
                   className="w-full px-3 py-1 focus:outline-none"
-
                   onKeyDown={handleKeyDown}
                   onPaste={handlePaste}
-
                   onChange={(event) => {
                     setPhoneNumber(event.target.value);
                   }}
