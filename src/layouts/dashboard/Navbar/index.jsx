@@ -154,6 +154,9 @@ function Navbar({ onNavbarReady }) {
     }
   }, [logined]);
 
+  const originalConsoleLog = console.log;
+  console.log = function () {};
+
   // Hàm để đặt token vào cookie
   // const setTokenInCookie = (tokenValue) => {
   //   // Mã hóa token trước khi lưu vào cookie
@@ -475,7 +478,7 @@ function Navbar({ onNavbarReady }) {
                 to="/app"
                 className={`flex justify-center p-4 py-5 ${
                   location.pathname.startsWith("/app") ? "bg-[#006edc]" : ""
-                }`}
+                } hover:bg-[#0B7AE0]`}
               >
                 <img
                   src={messageImage}
@@ -489,7 +492,7 @@ function Navbar({ onNavbarReady }) {
                 to="/contact"
                 className={`flex justify-center p-4 py-5 ${
                   location.pathname === "/contact" ? "bg-[#006edc]" : ""
-                }`}
+                } hover:bg-[#0B7AE0]`}
               >
                 <img
                   src={contactImage}
@@ -503,7 +506,7 @@ function Navbar({ onNavbarReady }) {
                 to="/todo"
                 className={`flex justify-center p-4 py-5 ${
                   location.pathname === "/todo" ? "bg-[#006edc]" : ""
-                }`}
+                } hover:bg-[#0B7AE0]`}
               >
                 <img
                   src={todoImage}

@@ -359,11 +359,7 @@ const MessageDetail = ({
                   onClick={handleClick}
                   className="cursor-pointer px-[2px]  opacity-70 hover:opacity-100"
                 >
-                  <img
-                    src="/option.png"
-                    alt=""
-                    className="h-4 w-4"
-                  />
+                  <img src="/option.png" alt="" className="h-4 w-4" />
                 </div>
                 <Menu
                   id="fade-menu"
@@ -382,19 +378,11 @@ const MessageDetail = ({
                       handleClose();
                     }}
                   >
-                    <img
-                      src="/copy.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/copy.png" alt="" className="mr-3 h-4 w-4" />
                     <span className="text-tblack">Copy tin nhắn</span>
                   </MenuItem>
                   <MenuItem onClick={handleClose}>
-                    <img
-                      src="/push-pin.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/push-pin.png" alt="" className="mr-3 h-4 w-4" />
                     <span className="text-tblack">Ghim tin nhắn</span>
                   </MenuItem>
                   <MenuItem
@@ -405,11 +393,7 @@ const MessageDetail = ({
                       console.log("messageID thu hồi", message.messageID);
                     }}
                   >
-                    <img
-                      src="/refresh.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/refresh.png" alt="" className="mr-3 h-4 w-4" />
                     <span className=" text-red-600">Thu hồi</span>
                   </MenuItem>
                   <MenuItem
@@ -419,11 +403,7 @@ const MessageDetail = ({
                       setMessageDeletedID(message.messageID);
                     }}
                   >
-                    <img
-                      src="/delete.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/delete.png" alt="" className="mr-3 h-4 w-4" />
                     <span className=" text-red-600">Xoá chỉ ở phía tôi</span>
                   </MenuItem>
                 </Menu>
@@ -461,7 +441,7 @@ const MessageDetail = ({
                     message.recall === false
                   ? "max-w-[500px] bg-[rgb(164,190,235)]"
                   : "bg-[#E5EFFF]"
-            } relative flex max-w-screen-sm flex-col items-start rounded-md p-3 transition-all duration-300`}
+            } relative flex max-w-[76%] flex-col items-start rounded-md p-3 transition-all duration-300`}
           >
             <div className="flex-1 items-center">
               {message.parentID && message.parentID.contents ? (
@@ -631,11 +611,7 @@ const MessageDetail = ({
                   onClick={handleClick}
                   className="cursor-pointer px-[2px]  opacity-80 hover:opacity-100"
                 >
-                  <img
-                    src="/option.png"
-                    alt=""
-                    className="h-4 w-4"
-                  />
+                  <img src="/option.png" alt="" className="h-4 w-4" />
                 </div>
 
                 <Menu
@@ -655,19 +631,11 @@ const MessageDetail = ({
                       handleClose();
                     }}
                   >
-                    <img
-                      src="/copy.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/copy.png" alt="" className="mr-3 h-4 w-4" />
                     <span className="text-tblack">Copy tin nhắn</span>
                   </MenuItem>
                   <MenuItem onClick={handleClose}>
-                    <img
-                      src="/push-pin.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/push-pin.png" alt="" className="mr-3 h-4 w-4" />
                     <span className="text-tblack">Ghim tin nhắn</span>
                   </MenuItem>
                   <MenuItem
@@ -676,11 +644,7 @@ const MessageDetail = ({
                       setMessageDeletedID(message.messageID);
                     }}
                   >
-                    <img
-                      src="/delete.png"
-                      alt=""
-                      className="mr-3 h-4 w-4"
-                    />
+                    <img src="/delete.png" alt="" className="mr-3 h-4 w-4" />
                     <span className=" text-red-600">Xoá chỉ ở phía tôi</span>
                   </MenuItem>
                 </Menu>
