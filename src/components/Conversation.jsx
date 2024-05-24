@@ -235,18 +235,38 @@ const Conversation = () => {
       });
   };
 
+  // // Hàm xử lý khi người dùng chọn ảnh
+  // const handleImageSelection2 = (e) => {
+  //   const file = e.target.files;
+  //   // if (file) {
+  //   //   handleFileUpload(file);
+  //   //   setContentType("image");
+  //   // }
+  //   const files = Array.from(file);
+  //   if (files && files.length > 0) {
+  //     console.log("Files:", files.toString());
+  //   }
+  //   uploadMultiImageToS3(files);
+  // };
+
   // Hàm xử lý khi người dùng chọn ảnh
   const handleImageSelection2 = (e) => {
-    const file = e.target.files;
-    // if (file) {
-    //   handleFileUpload(file);
-    //   setContentType("image");
-    // }
-    const files = Array.from(file);
-    if (files && files.length > 0) {
-      console.log("Files:", files.toString());
+    const files = Array.from(e.target.files);
+    const maxSize = 5 * 1024 * 1024; // Giới hạn dung lượng 5MB
+
+    // Lọc những file vượt quá giới hạn dung lượng
+    const largeFiles = files.filter((file) => file.size > maxSize);
+
+    if (largeFiles.length > 0) {
+      alert("Một hoặc nhiều ảnh quá lớn. Vui lòng chọn ảnh nhỏ hơn 10MB.");
+      e.target.value = null; // Xóa lựa chọn file nếu có file lớn hơn giới hạn
+    } else {
+      // Xử lý file nếu tất cả đều trong giới hạn
+      if (files && files.length > 0) {
+        console.log("Files:", files.toString());
+      }
+      uploadMultiImageToS3(files);
     }
-    uploadMultiImageToS3(files);
   };
 
   // // Hàm xử lý khi người dùng chọn file
@@ -267,6 +287,16 @@ const Conversation = () => {
     }
   };
 
+  const handleLimitedFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > 10 * 1024 * 1024) {
+      alert("File quá lớn. Vui lòng chọn file nhỏ hơn 10MB.");
+      e.target.value = null; // Xóa lựa chọn file
+    } else {
+      handleFileChange(e); // Gọi hàm xử lý thay đổi file
+    }
+  };
+
   const handleVideoChange = (event) => {
     const selectedVideo = event.target.files[0];
     if (selectedVideo) {
@@ -274,6 +304,17 @@ const Conversation = () => {
       uploadFileToS3(selectedVideo);
       // Đặt loại nội dung là file
       setContentType("mp4");
+    }
+  };
+
+  // Hàm xử lý sự kiện khi thay đổi video với giới hạn dung lượng
+  const handleLimitedVideoChange = (e) => {
+    const file = e.target.files[0];
+    if (file && file.size > 10 * 1024 * 1024) {
+      alert("Video quá lớn. Vui lòng chọn video nhỏ hơn 10MB.");
+      e.target.value = null; // Xóa lựa chọn file
+    } else {
+      handleVideoChange(e);
     }
   };
 
@@ -1017,8 +1058,9 @@ const Conversation = () => {
             throw new Error("Failed to search message in conversations");
           }
           const data = await response.json();
-          console.log("SearchMsg:", data);
-          setResultSearch(data);
+          const filteredData = data.filter((item) => !item.recall);
+          console.log("SearchMsg:", filteredData);
+          setResultSearch(filteredData);
         } catch (error) {
           console.error(
             "Error fetching search message in conversations:",
@@ -1511,7 +1553,7 @@ const Conversation = () => {
         <div className="flex h-screen w-full">
           <div className="border-1 h-screen w-full border-blue-700 ">
             {/* huy1 */}
-            <div className="h-[68px] w-full px-4  border-r">
+            <div className="h-[68px] w-full border-r  px-4">
               <div className="flex h-full w-full flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-x-2">
                   <Link to="/app" className="md:hidden">
@@ -1761,7 +1803,7 @@ const Conversation = () => {
                 )}
               </div>
             )}
-            <div className="border-t border-r">
+            <div className="border-r border-t">
               <div className="flex h-[47px] flex-row justify-items-start bg-white">
                 <div className="flex flex-row justify-items-start pl-2">
                   <div className="mr-2 flex w-10 items-center justify-center">
@@ -1828,7 +1870,7 @@ const Conversation = () => {
                     <input
                       id="fileInput"
                       type="file"
-                      onChange={handleFileChange}
+                      onChange={handleLimitedFileChange}
                       className="hidden"
                       accept=".txt, .pdf, .doc, .csv, .zip, .rar, .xlsx, .xls, .ppt, .pptx, .docx, .json"
                     />
@@ -1844,7 +1886,7 @@ const Conversation = () => {
                     <input
                       id="videoInput"
                       type="file"
-                      onChange={handleVideoChange}
+                      onChange={handleLimitedVideoChange}
                       className="hidden"
                       accept=".mp4, .mov, .avi, .flv, .wmv, .mkv, .webm, .MP4"
                     />
@@ -1971,9 +2013,9 @@ const Conversation = () => {
             <div className="w-[440px] overflow-y-auto bg-[#FFFFFF]">
               <div className=" w-full flex-col items-center ">
                 <div className="fixed z-50 flex w-full items-center justify-center border bg-white text-center"></div>
-                <h1 className="border-5 absolute z-50 h-[68px] px-[75px] justify-center border-b bg-white p-3 pt-5 text-center text-[18px] font-[500] text-tblack">
-                  Thông tin hội thoại
-                </h1>
+                <div className="absolute z-50 h-[68px] w-fit justify-center border-b bg-white p-3 px-[93px] pt-5 text-center text-[18px] font-[500] text-tblack">
+                  <span className="w-full flex-1">Thông tin hội thoại</span>
+                </div>
                 <div className="flex h-full flex-col justify-end bg-white pt-[68px]">
                   <div className="my-4 flex w-full flex-wrap justify-center">
                     <div className="flex w-full  flex-col items-center justify-center">
