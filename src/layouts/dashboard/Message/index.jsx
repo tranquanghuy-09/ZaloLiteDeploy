@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 const MessageLayout = () => {
   const [socket, setSocket] = useState(null);
@@ -7,7 +7,7 @@ const MessageLayout = () => {
   useEffect(() => {
     const newSocket = new WebSocket(`${process.env.SOCKET_CHAT}/ws/chat/${id}`);
     newSocket.onopen = () => {
-      console.log("WebSocket connected >>>>>>>>HUy");
+      console.log("");
     };
     setSocket(newSocket);
   }, [socket]);
@@ -99,6 +99,6 @@ const MessageLayout = () => {
       </div>
     </div>
   );
-}
+};
 
 export default MessageLayout;

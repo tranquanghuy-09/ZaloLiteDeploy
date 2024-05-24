@@ -494,6 +494,7 @@ const Conversation = () => {
       if (parentID) {
         message.parentID = parentID;
         setOpenCompReplyInput(false);
+        setParentIdMsg("");
       }
       if (messageForward) {
         message.contents = messageForward;
@@ -1119,7 +1120,7 @@ const Conversation = () => {
   const [listLink, setListLink] = useState([]);
 
   const handleClickRightBar = () => {
-    console.log("Click");
+    // console.log("Click");
     setOpenRightBar(!openRightBar);
     const imageMessages = messages.filter(
       (message) =>
@@ -1507,10 +1508,10 @@ const Conversation = () => {
             </div>
           </div>
         )}
-        <div className="flex h-screen w-full ">
-          <div className="border-1 h-screen w-full border-blue-700">
+        <div className="flex h-screen w-full">
+          <div className="border-1 h-screen w-full border-blue-700 ">
             {/* huy1 */}
-            <div className="h-[68px] w-full px-4">
+            <div className="h-[68px] w-full px-4  border-r">
               <div className="flex h-full w-full flex-row items-center justify-between">
                 <div className="flex flex-row items-center gap-x-2">
                   <Link to="/app" className="md:hidden">
@@ -1520,7 +1521,7 @@ const Conversation = () => {
                     />
                   </Link>
 
-                  <div className="hidden lg:block">
+                  <div className="block">
                     <StyledBadge
                       overlap="circular"
                       anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
@@ -1760,7 +1761,7 @@ const Conversation = () => {
                 )}
               </div>
             )}
-            <div className="border-t">
+            <div className="border-t border-r">
               <div className="flex h-[47px] flex-row justify-items-start bg-white">
                 <div className="flex flex-row justify-items-start pl-2">
                   <div className="mr-2 flex w-10 items-center justify-center">
@@ -1877,14 +1878,14 @@ const Conversation = () => {
                   </div>
                 </div>
               </div>
-              <div className={`h-${openCompReplyInput ? "120.5" : "58.5"}px`}>
+              <div className={`h-${openCompReplyInput ? "120.5" : "58.5"}px `}>
                 {/* Thêm phần nhập tin nhắn ở đây */}
                 {/* <MessageInput
               onSendMessage={handleSendMessage}
               onKeySendMessage={handleKeyPress}
             /> */}
                 <div
-                  className="flex w-full items-center bg-white"
+                  className="flex w-full items-center bg-white "
                   // style={{ height: "58.5px" }}
                 >
                   <div className="mb-0 w-full pb-0">
@@ -1966,13 +1967,14 @@ const Conversation = () => {
             </div>
           </div>
           {openRightBar && (
+            // w-[440px]
             <div className="w-[440px] overflow-y-auto bg-[#FFFFFF]">
               <div className=" w-full flex-col items-center ">
                 <div className="fixed z-50 flex w-full items-center justify-center border bg-white text-center"></div>
-                <h1 className="border-5 absolute z-50 h-[68px] w-[340px] justify-center border-b bg-white p-3 pt-5 text-center text-[18px] font-[500] text-tblack">
+                <h1 className="border-5 absolute z-50 h-[68px] px-[75px] justify-center border-b bg-white p-3 pt-5 text-center text-[18px] font-[500] text-tblack">
                   Thông tin hội thoại
                 </h1>
-                <div className="flex h-full flex-col justify-end bg-white pt-[68px] ">
+                <div className="flex h-full flex-col justify-end bg-white pt-[68px]">
                   <div className="my-4 flex w-full flex-wrap justify-center">
                     <div className="flex w-full  flex-col items-center justify-center">
                       <div
@@ -2145,6 +2147,7 @@ const Conversation = () => {
                           <a
                             href={item.contents[0].value}
                             target="_blank"
+                            rel="noopener noreferrer"
                             className="flex w-full items-center  hover:bg-[#F1F3F4]"
                           >
                             <div className="flex h-[42px] w-[42px] items-center justify-center rounded border">

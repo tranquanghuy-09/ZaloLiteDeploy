@@ -166,11 +166,7 @@ function ChatElement({
         } else if (lastContent.key === "image") {
           return (
             <span className="flex items-center">
-              <img
-                src="/image.png"
-                alt=""
-                className="h-[14px] w-[14px]"
-              />
+              <img src="/image.png" alt="" className="h-[14px] w-[14px]" />
               &nbsp;Hình ảnh
             </span>
           );
@@ -335,7 +331,7 @@ function ChatElement({
         readByOnClick && id === sessionStorage.getItem("chatID")
           ? "bg-[#E1EDFE]"
           : ""
-      }  z-50 pl-4 pr-1`}
+      }  z-50 pl-4 pr-1 transition-all duration-300`}
     >
       {topChatActivity.length >= 0 ? (
         <div
@@ -466,8 +462,8 @@ function ChatElement({
               {unreadCount != 0 ? (
                 <>
                   <div className="flex h-4 w-4 flex-grow items-center justify-center place-self-end rounded-full bg-[#C81A1F] text-white">
-                  <span className="text-xs">{unreadCount}</span>
-                </div>
+                    <span className="text-xs">{unreadCount}</span>
+                  </div>
                 </>
               ) : (
                 <></>
