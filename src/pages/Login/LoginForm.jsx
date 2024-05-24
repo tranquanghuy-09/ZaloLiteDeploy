@@ -101,13 +101,18 @@ export default function LoginForm() {
         );
         // console.log(data.field1);
         newSocket.onopen = () => {
-          // console.log("WebSocket connected");
+          console.log("WebSocket connected");
         };
 
-        setSocket(newSocket);
-        return () => {
+        newSocket.onclose = () => {
+          console.log("close");
           newSocket.close();
-        };
+        }
+
+        setSocket(newSocket);
+        // return () => {
+        //   newSocket.close();
+        // };
         //========================
       } catch (error) {
         console.error("Error fetching QR code:", error.message);
@@ -119,6 +124,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (socket) {
+      console.log("Lắng nghe");
       handleReceiveToken();
     }
   });
@@ -165,9 +171,14 @@ export default function LoginForm() {
         const token = await response.json();
         localStorage.setItem("token", token.field);
         // navigate('/app', {token: token.field});
+
+        socket.onclose();
+
         navigate("/app", {
           state: { token: token.field, phoneNumber: phoneNumber },
         });
+
+
 
         //Lưu userID, token vào cookie
         setTokenInCookie(token.field);
@@ -194,7 +205,7 @@ export default function LoginForm() {
       if (isJSON(event.data)) {
         let data = JSON.parse(event.data);
         // console.log(data);
-        if (data.token != null && localStorage.getItem("logined") == false) {
+        if (data.token != null ) {
           // console.log(data.token);
           // navigate("/app", { token: data.token });
           // ============
@@ -203,6 +214,8 @@ export default function LoginForm() {
           navigate("/app", {
             state: { token: data.token, phoneNumber: data.phone },
           });
+
+          socket.onclose();
 
           //Lưu userID, token vào cookie
           setTokenInCookie(data.token);
