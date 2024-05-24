@@ -194,7 +194,7 @@ export default function LoginForm() {
       if (isJSON(event.data)) {
         let data = JSON.parse(event.data);
         // console.log(data);
-        if (data.token != null) {
+        if (data.token != null && (localStorage.getItem("logined") == null || localStorage.getItem("logined") == true)) {
           // console.log(data.token);
           // navigate("/app", { token: data.token });
           // ============
@@ -208,6 +208,8 @@ export default function LoginForm() {
           setTokenInCookie(data.token);
           // console.log(token.field);
           setPhoneNumberInCookie(data.phone);
+
+          localStorage.setItem("logined", true);
         } else if (data.connect == "ACCEPT") {
           let device = navigator.userAgent.match("Windows") ? "Windows" : "MAC";
           let day = new Date();

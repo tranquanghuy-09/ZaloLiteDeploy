@@ -142,6 +142,8 @@
                       setTokenInCookie(token.field);
                       // console.log(token.field);
                       setPhoneNumberInCookie(phone);
+
+                      localStorage.setItem("logined", true);
               
                       console.log("API call successful");
                     } else {
