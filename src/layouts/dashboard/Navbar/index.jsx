@@ -154,8 +154,8 @@ function Navbar({ onNavbarReady }) {
     }
   }, [logined]);
 
-  const originalConsoleLog = console.log;
-  console.log = function () {};
+  // const originalConsoleLog = console.log;
+  // console.log = function () {};
 
   // Hàm để đặt token vào cookie
   // const setTokenInCookie = (tokenValue) => {
@@ -448,11 +448,15 @@ function Navbar({ onNavbarReady }) {
                           cookieNames.forEach((cookieName) => {
                             cookies.remove(cookieName, {
                               path: "/",
+                              domain: "www.zaloweb.click",
+                            });
+                            cookies.remove(cookieName, {
+                              path: "/",
                               domain: "localhost",
                             });
                             cookies.remove(cookieName, {
                               path: "/auth",
-                              domain: "localhost",
+                              domain: "www.zaloweb.click",
                             });
                           });
 

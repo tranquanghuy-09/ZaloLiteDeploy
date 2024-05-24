@@ -160,7 +160,22 @@ const MessageDetail = ({
           content.key.startsWith("xlsx") ||
           content.key.startsWith("doc") ||
           content.key.startsWith("docx") ||
-          content.key.startsWith("rar")
+          content.key.startsWith("rar") ||
+          content.key.startsWith("txt") ||
+          content.key.startsWith("csv") ||
+          content.key.startsWith("ppt") ||
+          content.key.startsWith("pptx") ||
+          content.key.startsWith("json") ||
+          content.key.startsWith("xml") ||
+          content.key.startsWith("html") ||
+          content.key.startsWith("css") ||
+          content.key.startsWith("js") ||
+          content.key.startsWith("ts") ||
+          content.key.startsWith("java") ||
+          content.key.startsWith("py") ||
+          content.key.startsWith("c") ||
+          content.key.startsWith("cpp") ||
+          content.key.startsWith("md")
         ) {
           const [fileLabel, fileName, fileSize] = content.key.split("|");
           return (
@@ -441,7 +456,7 @@ const MessageDetail = ({
                     message.recall === false
                   ? "max-w-[500px] bg-[rgb(164,190,235)]"
                   : "bg-[#E5EFFF]"
-            } relative flex max-w-[76%] flex-col items-start rounded-md p-3 transition-all duration-300`}
+            } relative flex max-w-screen-sm flex-col items-start rounded-md p-3 transition-all duration-300`}
           >
             <div className="flex-1 items-center">
               {message.parentID && message.parentID.contents ? (
@@ -450,15 +465,15 @@ const MessageDetail = ({
                     <div className="h-9">
                       {renderImageInForwadMsg(message.parentID.contents)}
                     </div>
-                    <div className="h-full w-full flex-1 pl-1">
+                    <div className="h-full w-full flex-1">
                       <div className="flex w-full items-center text-xs">
                         <div className="flex">
-                          <img
+                          {/* <img
                             src="/quotation.png"
                             alt=""
                             className="h-4 w-4"
                           />
-                          &nbsp;
+                          &nbsp; */}
                           <span className="text-[13px] font-semibold">
                             {/* {message.userID === userIDFromCookies &&
                             message.parentID.userID === userIDFromCookies
