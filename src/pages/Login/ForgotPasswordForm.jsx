@@ -11,7 +11,7 @@ export default function ForgotPasswordForm() {
     const phoneProp = location.state?.phoneProp;
 
     useEffect(() => {
-        console.log(phoneProp);
+        // console.log(phoneProp);
         if (phoneProp!==undefined) {
             
             setPhoneNumber(phoneProp);
