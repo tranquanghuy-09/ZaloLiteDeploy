@@ -64,7 +64,9 @@ export default function Router() {
   // }, [location]);
 
   // Nếu profileData là null, điều hướng đến trang đăng nhập
-  if (
+  if (location.pathname !== "forgot-password" || location.pathname !== "forgot-password") {
+
+  } else if (
     localStorage.getItem("logined") === "false" &&
     location.pathname !== "/auth/login"
   ) {

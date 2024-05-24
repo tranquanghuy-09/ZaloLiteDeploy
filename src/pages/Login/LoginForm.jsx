@@ -101,11 +101,11 @@ export default function LoginForm() {
         );
         // console.log(data.field1);
         newSocket.onopen = () => {
-          console.log("WebSocket connected");
+          // console.log("WebSocket connected");
         };
 
         newSocket.onclose = () => {
-          console.log("close");
+          // console.log("close");
           newSocket.close();
         }
 
@@ -124,7 +124,7 @@ export default function LoginForm() {
 
   useEffect(() => {
     if (socket) {
-      console.log("Lắng nghe");
+      // console.log("Lắng nghe");
       handleReceiveToken();
     }
   });
@@ -174,16 +174,18 @@ export default function LoginForm() {
 
         socket.onclose();
 
+        //Lưu userID, token vào cookie
+        setTokenInCookie(token.field);
+        // console.log(token.field);
+        setPhoneNumberInCookie(phoneNumber);
+
         navigate("/app", {
           state: { token: token.field, phoneNumber: phoneNumber },
         });
 
 
 
-        //Lưu userID, token vào cookie
-        setTokenInCookie(token.field);
-        // console.log(token.field);
-        setPhoneNumberInCookie(phoneNumber);
+        
 
         localStorage.setItem("logined", true);
 
@@ -211,16 +213,20 @@ export default function LoginForm() {
           // ============
           localStorage.setItem("token", data.token);
           // navigate('/app', {token: token.field});
+
+
+          //Lưu userID, token vào cookie
+          setTokenInCookie(data.token);
+          // console.log(token.field);
+          setPhoneNumberInCookie(data.phone);
+
           navigate("/app", {
             state: { token: data.token, phoneNumber: data.phone },
           });
 
           socket.onclose();
 
-          //Lưu userID, token vào cookie
-          setTokenInCookie(data.token);
-          // console.log(token.field);
-          setPhoneNumberInCookie(data.phone);
+          
 
           localStorage.setItem("logined", true);
         } else if (data.connect == "ACCEPT") {
