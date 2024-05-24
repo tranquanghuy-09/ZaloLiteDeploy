@@ -194,7 +194,7 @@ export default function LoginForm() {
       if (isJSON(event.data)) {
         let data = JSON.parse(event.data);
         // console.log(data);
-        if (data.token != null && (localStorage.getItem("logined") == null || localStorage.getItem("logined") == false)) {
+        if (data.token != null && localStorage.getItem("logined") == false) {
           // console.log(data.token);
           // navigate("/app", { token: data.token });
           // ============
