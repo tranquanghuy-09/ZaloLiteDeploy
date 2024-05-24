@@ -144,6 +144,7 @@
                       setPhoneNumberInCookie(phone);
 
                       localStorage.setItem("logined", true);
+                    //   socket.close();
               
                       console.log("API call successful");
                     } else {
